@@ -12,7 +12,7 @@
     "glob": "^11.0.0",
     "postcss": "^8.4.41",
     "postcss-sort-media-queries": "^5.2.0",
-    "vite": "^0.10.3"
+    "vite": "^5.4.6"
   },
   "author": "Artem Zakharchuk <zakharchukartem18@gmail.com>",
   "license": "ISC",
@@ -26,4 +26,3 @@
   }
 }
 
-//
