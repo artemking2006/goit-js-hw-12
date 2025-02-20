@@ -40,7 +40,7 @@ function endOfList(daddyElement) {
 }
 
 export async function getImage(input) {
-    const API_KEY = '';
+    const API_KEY = '48883219-a8d6c51151168ef356226c6a1';
     const query = encodeURIComponent(input);
     const urlParams = new URLSearchParams({
         key: API_KEY,
