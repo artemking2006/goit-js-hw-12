@@ -29,10 +29,10 @@ const iziOption = {
 let page = 1;
 let perPage = 15;
 
-export function resetPage() {
+ function resetPage() {
   page = 1;
 }
-export function addPage() {
+ function addPage() {
   page += 1;
 }
 
