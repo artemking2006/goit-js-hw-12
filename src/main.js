@@ -34,31 +34,6 @@ let perPage = 15;
   page += 1;
 }
 
-const URL = `https://pixabay.com/api/?${urlParams}`;
-
-try {
-  const { data } = await axios.get(URL);
-  markup(data);
-  if (data.totalHits < page * perPage) {
-    endOfList(load);
-  }
-  if (page >= 2) {
-    const list = document.querySelector('.gallery__item');
-    const rect = list.getBoundingClientRect();
-    window.scrollBy({
-      top: rect.height * 2,
-      behavior: 'smooth',
-    });
-  }
-} catch (error) {
-  console.error(error);
-  box.innerHTML = '';
-  load.innerHTML = '';
-  iziToast.show({
-    ...iziOption,
-    message: 'Sorry, an error happened. Try again',
-  });
-}
 
 form.addEventListener('submit', event => {
   event.preventDefault();
