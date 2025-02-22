@@ -14,7 +14,10 @@ export async function getImage(input) {
     page: page,
     per_page: perPage,
   });
-  const URL = `https://pixabay.com/api/?${urlParams}`;
+}
+
+
+ /* const URL = `https://pixabay.com/api/?${urlParams}`;
 
   try {
     const { data } = await axios.get(URL);
@@ -41,4 +44,6 @@ export async function getImage(input) {
     });
     return;
   }
-}
+} 
+  */
+

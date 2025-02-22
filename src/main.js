@@ -42,7 +42,6 @@ try {
   markup(data);
   if (data.totalHits < page * perPage) {
     endOfList(load);
-    return;
   }
   if (page >= 2) {
     const list = document.querySelector('.gallery__item');
@@ -60,7 +59,6 @@ try {
     ...iziOption,
     message: 'Sorry, an error happened. Try again',
   });
-  return;
 }
 
 form.addEventListener('submit', event => {
