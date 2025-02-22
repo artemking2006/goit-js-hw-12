@@ -1,5 +1,4 @@
 import { getImage } from './js/pixabay-api';
-import { resetPage } from './js/pixabay-api';
 import { addPage } from './js/pixabay-api';
 import { addLoadStroke } from './js/render-functions';
 import errorIcon from './img/error.svg';
