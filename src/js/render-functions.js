@@ -26,6 +26,11 @@ export function addLoadStroke(daddyElement) {
   addMoreButton.classList.add('hide');
 }
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 export function removeLoadStroke(daddyElement) {
   const textElement = daddyElement.querySelector('.loading-text');
   const loaderElement = daddyElement.querySelector('.loader');
@@ -70,11 +75,6 @@ export function markup(data) {
     )
     .join(' ');
   removeLoadStroke(load);
-
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
 
   box.insertAdjacentHTML('beforeend', markup);
 

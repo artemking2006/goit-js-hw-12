@@ -6,6 +6,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
 import { markup } from '/js/render-functions';
 import { removeLoadStroke } from '/js/render-functions';
+import { getImage } from './js/pixabay-api';
 
 
 const box = document.querySelector('.gallery');
@@ -32,6 +33,34 @@ let perPage = 15;
 }
  function addPage() {
   page += 1;
+}
+
+const URL = `https://pixabay.com/api/?${urlParams}`;
+
+try {
+  const { data } = await axios.get(URL);
+  markup(data);
+  if (data.totalHits < page * perPage) {
+    endOfList(load);
+    return;
+  }
+  if (page >= 2) {
+    const list = document.querySelector('.gallery__item');
+    const rect = list.getBoundingClientRect();
+    window.scrollBy({
+      top: rect.height * 2,
+      behavior: 'smooth',
+    });
+  }
+} catch (error) {
+  console.error(error);
+  box.innerHTML = '';
+  load.innerHTML = '';
+  iziToast.show({
+    ...iziOption,
+    message: 'Sorry, an error happened. Try again',
+  });
+  return;
 }
 
 form.addEventListener('submit', event => {
