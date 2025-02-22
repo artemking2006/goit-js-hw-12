@@ -1,5 +1,4 @@
 import { getImage } from './js/pixabay-api';
-import { addPage } from './js/pixabay-api';
 import { addLoadStroke } from './js/render-functions';
 import errorIcon from './img/error.svg';
 import iziToast from 'izitoast';
@@ -46,7 +45,7 @@ form.addEventListener('submit', event => {
     return;
   }
   box.innerHTML = '';
-  page = 1;
+  resetPage();
   addLoadStroke(load);
   getImage(inputValue);
 });
