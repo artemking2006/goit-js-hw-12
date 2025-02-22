@@ -6,7 +6,6 @@ import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
 import { markup } from '/js/render-functions';
 import { removeLoadStroke } from '/js/render-functions';
-import { getImage } from './js/pixabay-api';
 
 
 const box = document.querySelector('.gallery');
