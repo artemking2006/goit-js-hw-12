@@ -26,6 +26,16 @@ const iziOption = {
   closeOnClick: true,
 };
 
+let page = 1;
+let perPage = 15;
+
+export function resetPage() {
+  page = 1;
+}
+export function addPage() {
+  page += 1;
+}
+
 form.addEventListener('submit', event => {
   event.preventDefault();
   let inputValue = input.value.trim();
@@ -42,24 +52,6 @@ form.addEventListener('submit', event => {
   getImage(inputValue);
 });
 
-addMoreButton.addEventListener('click', event => {
-  let inputValue = input.value.trim();
-  addPage();
-  addLoadStroke(load);
-  getImage(inputValue);
-});
-
-
-let page = 1;
-let perPage = 15;
-
-export function resetPage() {
-  page = 1;
-}
-export function addPage() {
-  page += 1;
-}
-
 function endOfList(daddyElement) {
   removeLoadStroke(daddyElement);
   daddyElement.insertAdjacentHTML(
@@ -68,3 +60,14 @@ function endOfList(daddyElement) {
   );
   addMoreButton.classList.add('hide');
 }
+
+addMoreButton.addEventListener('click', event => {
+  let inputValue = input.value.trim();
+  addPage();
+  addLoadStroke(load);
+  getImage(inputValue);
+});
+
+
+
+
