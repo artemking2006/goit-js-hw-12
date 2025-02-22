@@ -47,7 +47,7 @@ form.addEventListener('submit', event => {
     return;
   }
   box.innerHTML = '';
-  resetPage();
+  page = 1;
   addLoadStroke(load);
   getImage(inputValue);
 });
