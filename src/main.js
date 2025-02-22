@@ -5,6 +5,10 @@ import { addLoadStroke } from './js/render-functions';
 import errorIcon from './img/error.svg';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import axios from 'axios';
+import { markup } from '/js/render-functions';
+import { removeLoadStroke } from '/js/render-functions';
+
 
 const box = document.querySelector('.gallery');
 const load = document.querySelector('.load');
@@ -44,3 +48,23 @@ addMoreButton.addEventListener('click', event => {
   addLoadStroke(load);
   getImage(inputValue);
 });
+
+
+let page = 1;
+let perPage = 15;
+
+export function resetPage() {
+  page = 1;
+}
+export function addPage() {
+  page += 1;
+}
+
+function endOfList(daddyElement) {
+  removeLoadStroke(daddyElement);
+  daddyElement.insertAdjacentHTML(
+    'beforeend',
+    '<p class="loading-text">We\'re sorry, but you\'ve reached the end of search results .</p>'
+  );
+  addMoreButton.classList.add('hide');
+}

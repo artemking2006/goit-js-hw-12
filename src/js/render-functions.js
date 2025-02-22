@@ -70,11 +70,13 @@ export function markup(data) {
     )
     .join(' ');
   removeLoadStroke(load);
-  box.insertAdjacentHTML('beforeend', markup);
 
   const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
   });
+
+  box.insertAdjacentHTML('beforeend', markup);
+
   lightbox.refresh();
 }

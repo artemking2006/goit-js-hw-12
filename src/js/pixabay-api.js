@@ -1,41 +1,6 @@
-import { markup } from '/js/render-functions';
-import { removeLoadStroke } from '/js/render-functions';
+
 import axios from 'axios';
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-import errorIcon from '../img/error.svg';
 
-const box = document.querySelector('.gallery');
-const load = document.querySelector('.load');
-const addMoreButton = document.querySelector('.add-more-button');
-const iziOption = {
-  messageColor: '#FAFAFB',
-  messageSize: '16px',
-  backgroundColor: '#EF4040',
-  iconUrl: errorIcon,
-  transitionIn: 'bounceInLeft',
-  position: 'topRight',
-  displayMode: 'replace',
-  closeOnClick: true,
-};
-let page = 1;
-let perPage = 15;
-
-export function resetPage() {
-  page = 1;
-}
-export function addPage() {
-  page += 1;
-}
-
-function endOfList(daddyElement) {
-  removeLoadStroke(daddyElement);
-  daddyElement.insertAdjacentHTML(
-    'beforeend',
-    '<p class="loading-text">We\'re sorry, but you\'ve reached the end of search results .</p>'
-  );
-  addMoreButton.classList.add('hide');
-}
 
 export async function getImage(input) {
   const API_KEY = '48883219-a8d6c51151168ef356226c6a1';
