@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 
-export async function getImage(input) {
+export async function getImage(page) {
   const API_KEY = '48883219-a8d6c51151168ef356226c6a1';
   const query = encodeURIComponent(input);
   const urlParams = new URLSearchParams({
