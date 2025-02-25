@@ -30,7 +30,7 @@ export async function getImage(searchedQuery, page) {
   const query = encodeURIComponent(input);
   const urlParams = new URLSearchParams({
     key: API_KEY,
-    q: query,
+    q: searchedQuery,
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: 'true',
