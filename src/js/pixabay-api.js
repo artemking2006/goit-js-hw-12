@@ -24,7 +24,7 @@ let perPage = 15;
 let page = 1;
 
 
-export async function getImage(page) {
+export async function getImage(searchedQuery, page) {
   const API_KEY = '48883219-a8d6c51151168ef356226c6a1';
   const input = document.querySelector('.user-input');
   const query = encodeURIComponent(input);
