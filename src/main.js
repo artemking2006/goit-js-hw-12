@@ -1,11 +1,14 @@
 import { getImage } from './js/pixabay-api';
 import { addLoadStroke } from './js/render-functions';
+import { removeLoadStroke } from '/js/render-functions';
+import { endOfList } from '/js/render-functions';
 import errorIcon from './img/error.svg';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
 import { markup } from '/js/render-functions';
-import { removeLoadStroke } from '/js/render-functions';
+
+
 
 
 const box = document.querySelector('.gallery');
@@ -13,6 +16,7 @@ const load = document.querySelector('.load');
 const addMoreButton = document.querySelector('.add-more-button');
 const form = document.querySelector('.form');
 const input = document.querySelector('.user-input');
+
 const iziOption = {
   messageColor: '#FAFAFB',
   messageSize: '16px',
@@ -26,6 +30,7 @@ const iziOption = {
 
 let page = 1;
 let perPage = 15;
+let totalHits = 0;
 
  function resetPage() {
   page = 1;
@@ -35,9 +40,11 @@ let perPage = 15;
 }
 
 
-form.addEventListener('submit', event => {
+form.addEventListener('submit', async event => {
   event.preventDefault();
   let inputValue = input.value.trim();
+
+
   if(!inputValue) {
     iziToast.show({
       ...iziOption,
@@ -45,26 +52,28 @@ form.addEventListener('submit', event => {
     });
     return;
   }
+
   box.innerHTML = '';
   resetPage();
   addLoadStroke(load);
-  getImage(inputValue);
+ 
+  totalHits = await getImage(inputValue, page, perPage);
+  if (totalHits <= perPage) {
+    endOfList(load);
+  }
 });
 
-function endOfList(daddyElement) {
-  removeLoadStroke(daddyElement);
-  daddyElement.insertAdjacentHTML(
-    'beforeend',
-    '<p class="loading-text">We\'re sorry, but you\'ve reached the end of search results .</p>'
-  );
-  addMoreButton.classList.add('hide');
-}
 
-addMoreButton.addEventListener('click', event => {
+addMoreButton.addEventListener('click', async () => {
   let inputValue = input.value.trim();
   addPage();
   addLoadStroke(load);
-  getImage(inputValue);
+
+  const loadedImages = await getImage(inputValue, page, perPage);
+
+  if (page * perPage >= totalHits) {
+    endOfList(load);
+  }
 });
 
 

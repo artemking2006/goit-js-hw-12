@@ -7,6 +7,8 @@ import errorIcon from '../img/error.svg';
 const box = document.querySelector('.gallery');
 const load = document.querySelector('.load');
 const addMoreButton = document.querySelector('.add-more-button');
+
+
 const iziOption = {
   messageColor: '#FAFAFB',
   messageSize: '16px',
@@ -31,6 +33,15 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 
+ export function endOfList(daddyElement) {
+  removeLoadStroke(daddyElement);
+  daddyElement.insertAdjacentHTML(
+    'beforeend',
+    '<p class="loading-text">We\'re sorry, but you\'ve reached the end of search results .</p>'
+  );
+  addMoreButton.classList.add('hide');
+}
+
 export function removeLoadStroke(daddyElement) {
   const textElement = daddyElement.querySelector('.loading-text');
   const loaderElement = daddyElement.querySelector('.loader');
@@ -44,16 +55,7 @@ export function removeLoadStroke(daddyElement) {
 export function markup(data) {
   const { hits } = data;
 
-  if (hits.length === 0) {
-    iziToast.show({
-      ...iziOption,
-      message:
-        'Sorry, there are no images matching your search query. Please, try again!',
-    });
-    box.innerHTML = '';
 
-    return;
-  }
   const markup = hits
     .map(
       image =>
@@ -74,6 +76,8 @@ export function markup(data) {
       </li>`
     )
     .join(' ');
+
+    
   removeLoadStroke(load);
 
   box.insertAdjacentHTML('beforeend', markup);
