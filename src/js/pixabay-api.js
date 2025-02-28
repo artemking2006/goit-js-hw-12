@@ -25,7 +25,7 @@ const iziOption = {
 };
 
 
-let perPage = 15;
+let perPage = 40;
 
 
 
@@ -61,7 +61,6 @@ export async function getImage(searchedQuery, pageNumber) {
 
     if (pageNumber * perPage >= data.totalHits) {
       endOfList(load);
-      return data.totalHits;
     }
 
     return data.totalHits;

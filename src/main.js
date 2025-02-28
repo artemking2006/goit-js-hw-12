@@ -29,7 +29,7 @@ const iziOption = {
 };
 
 let page = 1;
-let perPage = 15;
+let perPage = 40;
 let totalHits = 0;
 
  function resetPage() {
@@ -73,8 +73,21 @@ addMoreButton.addEventListener('click', async () => {
 
   if (page * perPage >= totalHits) {
     endOfList(load);
+  } else {
+    smoothScroll();
   }
 });
+
+function smoothScroll() {
+  const firstNewImage = document.querySelector('.gallery__item:last-child');
+  if (firstNewImage) {
+    const rect = firstNewImage.getBoundingClientRect();
+    window.scrollBy({
+      top: rect.height * 2,
+      behavior: 'smooth',
+    });
+  }
+}
 
 
 
