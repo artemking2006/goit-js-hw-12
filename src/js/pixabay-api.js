@@ -59,6 +59,8 @@ export async function getImage(searchedQuery, pageNumber) {
 
     markup(data);
 
+    removeLoadStroke(load);
+
     if (pageNumber * perPage >= data.totalHits) {
       endOfList(load);
     }

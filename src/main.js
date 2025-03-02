@@ -58,6 +58,9 @@ form.addEventListener('submit', async event => {
   addLoadStroke(load);
  
   totalHits = await getImage(inputValue, page, perPage);
+
+removeLoadStroke(load);
+
   if (totalHits <= perPage) {
     endOfList(load);
   }
@@ -71,21 +74,19 @@ addMoreButton.addEventListener('click', async () => {
 
   const loadedImages = await getImage(inputValue, page, perPage);
 
+  removeLoadStroke(load);
+
   if (page * perPage >= totalHits) {
     endOfList(load);
   } else {
-    smoothScroll();
+    setTimeout(smoothScroll, 300);
   }
 });
 
 function smoothScroll() {
   const firstNewImage = document.querySelector('.gallery__item:last-child');
   if (firstNewImage) {
-    const rect = firstNewImage.getBoundingClientRect();
-    window.scrollBy({
-      top: rect.height * 2,
-      behavior: 'smooth',
-    });
+    firstNewImage.scrollIntoView({behavior: 'smooth', block: 'start' });
   }
 }
 
